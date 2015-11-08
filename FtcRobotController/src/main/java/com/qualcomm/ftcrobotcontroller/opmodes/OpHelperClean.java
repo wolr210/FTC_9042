@@ -27,7 +27,7 @@ public class OpHelperClean extends OpMode{
     Servo zipLiner;
 
     //encoder targets
-    private int rightTarget,
+    public int rightTarget,
             leftTarget;
 
     //SERVO CONSTANTS
