@@ -11,6 +11,9 @@ public class AllSystemsCheck extends OpHelperClean {
 
     public void loop() {
 
+        public double leftMotorPower = Math.random();
+        public double rightMotorPower = Math.random()
+
         setDirection();
         setToEncoderMode();
         resetEncoders();
@@ -20,7 +23,7 @@ public class AllSystemsCheck extends OpHelperClean {
         rightTarget = 10;
         leftTarget = 0;
 
-       setMotorPower(.2, .8);
+       setMotorPower(leftMotorPower, rightMotorPower);
 
     }
 
