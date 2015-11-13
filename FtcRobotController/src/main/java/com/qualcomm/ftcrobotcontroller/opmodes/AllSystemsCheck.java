@@ -24,8 +24,6 @@ public class AllSystemsCheck extends OpHelperClean {
 
     private RunState runstate = RunState.Test_Left;
 
-    int Position = 0;
-
     public void init() {
 
        for (int i = 0; i < 7; i++)
@@ -41,6 +39,7 @@ public class AllSystemsCheck extends OpHelperClean {
                 setMotorPower(0.5, 0);
                 Works[1] = true;
                 runstate = RunState.Test_Left_Fast;
+                break;
 
             }
 
@@ -49,6 +48,7 @@ public class AllSystemsCheck extends OpHelperClean {
                setMotorPower(1, 0);
                Works[2] = true;
                runstate = RunState.Test_Right;
+                break;
 
             }
 
@@ -57,6 +57,7 @@ public class AllSystemsCheck extends OpHelperClean {
                 setMotorPower(0, 0.5);
                 Works[3] = true;
                 runstate = RunState.Test_Right_Fast;
+                break;
 
             }
 
@@ -73,6 +74,7 @@ public class AllSystemsCheck extends OpHelperClean {
                 setArmPivot(.5);
                 Works[5] = true;
                 runstate = RunState.Test_Tape_Measure;
+                break;
 
             }
 
@@ -81,6 +83,7 @@ public class AllSystemsCheck extends OpHelperClean {
                 moveTapeMeasure(.5);
                 Works[6] = true;
                 runstate = RunState.Test_Zipliner;
+                break;
 
             }
 
@@ -89,6 +92,7 @@ public class AllSystemsCheck extends OpHelperClean {
                 setZipLinePosition(1);
                 Works[7] = true;
                 runstate = RunState.Test_End;
+                break;
 
             }
 
@@ -98,6 +102,7 @@ public class AllSystemsCheck extends OpHelperClean {
                 setArmPivot(0);
                 moveTapeMeasure(0);
                 setZipLinePosition(0);
+                break;
 
             }
 
