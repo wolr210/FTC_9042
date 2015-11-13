@@ -20,7 +20,7 @@ public class AllSystemsCheck extends OpHelperClean {
         Test_End;
     }
 
-    private boolean Works[] = new boolean[7];
+    boolean Works[] = new boolean[7];
 
     private RunState runstate = RunState.Test_Left;
 
