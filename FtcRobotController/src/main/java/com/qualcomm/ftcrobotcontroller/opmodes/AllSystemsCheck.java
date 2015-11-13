@@ -9,9 +9,6 @@ public class AllSystemsCheck extends OpHelperClean {
 
     }
 
-    public double leftMotorPower = 0;
-    public double rightMotorPower = 0;
-
     enum RunState {
         Test_Left,
         Test_Left_Fast,
