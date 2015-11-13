@@ -13,19 +13,19 @@ public class AllSystemsCheck extends OpHelperClean {
     public double rightMotorPower = 0;
 
     enum RunState {
-        Test_Left;
-        Test_Left_Fast;
-        Test_Right;
-        Test_Right_Fast;
-        Test_Arm_Elbow;
-        Test_Tape_Measure;
-        Test_Zipliner;
+        Test_Left,
+        Test_Left_Fast,
+        Test_Right,
+        Test_Right_Fast,
+        Test_Arm_Elbow,
+        Test_Tape_Measure,
+        Test_Zipliner,
         Test_End;
     }
 
     private boolean Works[] = new boolean[7];
 
-    private RunState runstate = Runstate.Test_Left;
+    private RunState runstate = RunState.Test_Left;
 
     int Position = 0;
 
@@ -43,7 +43,7 @@ public class AllSystemsCheck extends OpHelperClean {
 
                 setMotorPower(0.5, 0);
                 Works[1] = true;
-                runstate = Test_Left_Fast;
+                runstate = RunState.Test_Left_Fast;
 
             }
 
@@ -51,7 +51,7 @@ public class AllSystemsCheck extends OpHelperClean {
 
                setMotorPower(1, 0);
                Works[2] = true;
-               runstate = Test_Right;
+               runstate = RunState.Test_Right;
 
             }
 
@@ -59,7 +59,7 @@ public class AllSystemsCheck extends OpHelperClean {
 
                 setMotorPower(0, 0.5);
                 Works[3] = true;
-                runstate = Test_Right_Fast;
+                runstate = RunState.Test_Right_Fast;
 
             }
 
@@ -67,7 +67,7 @@ public class AllSystemsCheck extends OpHelperClean {
 
                setMotorPower(0, 1);
                Works[4] = true;
-               runstate = Test_Arm_Elbow;
+               runstate = RunState.Test_Arm_Elbow;
 
             }
 
@@ -75,7 +75,7 @@ public class AllSystemsCheck extends OpHelperClean {
 
                 setArmPivot(.5);
                 Works[5] = true;
-                runstate = Test_Tape_Measure;
+                runstate = RunState.Test_Tape_Measure;
 
             }
 
@@ -83,15 +83,15 @@ public class AllSystemsCheck extends OpHelperClean {
 
                 moveTapeMeasure(.5);
                 Works[6] = true;
-                runstate = Test_Zipliner;
+                runstate = RunState.Test_Zipliner;
 
             }
 
             case Test_Zipliner: {
 
-                setMotorPower(0, 1);
+                setZipLinePosition(1);
                 Works[7] = true;
-                runstate = Test_End;
+                runstate = RunState.Test_End;
 
             }
 
@@ -99,7 +99,8 @@ public class AllSystemsCheck extends OpHelperClean {
 
                 setMotorPower(0, 0);
                 setArmPivot(0);
-                moveTapeMeasure(-.5);
+                moveTapeMeasure(0);
+                setZipLinePosition(0);
 
             }
 
