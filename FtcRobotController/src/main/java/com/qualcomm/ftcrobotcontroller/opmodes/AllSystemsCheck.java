@@ -30,6 +30,7 @@ public class AllSystemsCheck extends OpHelperClean {
           Works[i] = false;
     }
 
+    @Override
     public void loop() {
 
         switch (runstate) {
@@ -37,8 +38,9 @@ public class AllSystemsCheck extends OpHelperClean {
             case Test_Left: {
 
                 setMotorPower(0.5, 0);
-                Works[1] = true;
+                Works[0] = true;
                 runstate = RunState.Test_Left_Fast;
+                setMotorPower(0, 0);
                 break;
 
             }
@@ -46,8 +48,9 @@ public class AllSystemsCheck extends OpHelperClean {
             case Test_Left_Fast: {
 
                setMotorPower(1, 0);
-               Works[2] = true;
+               Works[1] = true;
                runstate = RunState.Test_Right;
+                setMotorPower(0, 0);
                 break;
 
             }
@@ -55,8 +58,9 @@ public class AllSystemsCheck extends OpHelperClean {
             case Test_Right: {
 
                 setMotorPower(0, 0.5);
-                Works[3] = true;
+                Works[2] = true;
                 runstate = RunState.Test_Right_Fast;
+                setMotorPower(0, 0);
                 break;
 
             }
@@ -64,16 +68,19 @@ public class AllSystemsCheck extends OpHelperClean {
             case Test_Right_Fast: {
 
                setMotorPower(0, 1);
-               Works[4] = true;
+               Works[3] = true;
                runstate = RunState.Test_Arm_Elbow;
+               setMotorPower(0, 0);
+               break;
 
             }
 
             case Test_Arm_Elbow: {
 
                 setArmPivot(.5);
-                Works[5] = true;
+                Works[4] = true;
                 runstate = RunState.Test_Tape_Measure;
+                setArmPivot(0);
                 break;
 
             }
@@ -81,8 +88,9 @@ public class AllSystemsCheck extends OpHelperClean {
             case Test_Tape_Measure: {
 
                 moveTapeMeasure(.5);
-                Works[6] = true;
+                Works[5] = true;
                 runstate = RunState.Test_Zipliner;
+                moveTapeMeasure(0);
                 break;
 
             }
@@ -90,37 +98,39 @@ public class AllSystemsCheck extends OpHelperClean {
             case Test_Zipliner: {
 
                 setZipLinePosition(1);
-                Works[7] = true;
+                Works[6] = true;
                 runstate = RunState.Test_End;
+                setZipLinePosition(0);
                 break;
 
             }
 
             case Test_End: {
 
-                setMotorPower(0, 0);
-                setArmPivot(0);
-                moveTapeMeasure(0);
-                setZipLinePosition(0);
+                stop();
                 break;
 
             }
 
         }
 
-        telemetry.addData("Left Motors Slow Work: ", Works[1]);
-        telemetry.addData("Left Motors Fast Work: ", Works[2]);
-        telemetry.addData("Right Motors Slow Work: ", Works[3]);
-        telemetry.addData("Right Motors Fast Work: ", Works[4]);
-        telemetry.addData("Arm Works: ", Works[5]);
-        telemetry.addData("Tape Measures Work", Works[6]);
-        telemetry.addData("Zipliner Pusher Works: ", Works[7]);
+        telemetry.addData("Left Motors Slow Work: ", Works[0]);
+        telemetry.addData("Left Motors Fast Work: ", Works[1]);
+        telemetry.addData("Right Motors Slow Work: ", Works[2]);
+        telemetry.addData("Right Motors Fast Work: ", Works[3]);
+        telemetry.addData("Arm Works: ", Works[4]);
+        telemetry.addData("Tape Measures Work", Works[5]);
+        telemetry.addData("Zipliner Pusher Works: ", Works[6]);
+
+        if (Works[0] && Works[1] && Works[2] && Works[3] && Works[4] && Works[5] && Works[6]) {
+
+            telemetry.addData("Everything Works: ", true);
+
+        }
 
     }
 
-    public void stop() {
 
-    }
 
 }
 
