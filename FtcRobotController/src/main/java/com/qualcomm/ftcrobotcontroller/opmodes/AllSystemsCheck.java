@@ -26,7 +26,7 @@ public class AllSystemsCheck extends OpHelperClean {
 
     public void init() {
 
-       for (int i = 0; i < 7; i++)
+       for (int i = 0; i < 6; i++)
           Works[i] = false;
     }
 
